@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MyTempMail - Temporary Email Generator</title>
+  <meta name="description" content="Generate a free temporary email address that lasts 10 minutes. Perfect for signups, verifications, and staying anonymous online.">
+  <meta name="keywords" content="temporary email, temp mail, disposable email, 10 minute email, free email, anonymous email, instant email, email generator, no signup email">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding: 40px;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      color: #333;
+    }
+    #email {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #2c3e50;
+      margin: 10px 0;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 1em;
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      background-color: #3498db;
+      color: white;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    #inbox {
+      margin-top: 20px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    #timer {
+      font-size: 1.2em;
+      color: #e67e22;
+    }
+  </style>
+</head>
+<body>
+  <h1>Temporary Email Generator</h1>
+  <div id="email">Loading email...</div>
+  <div id="timer">10:00</div>
+  <button onclick="generateEmail()">Generate</button>
+  <button onclick="refreshInbox()">Refresh</button>
+  <div id="inbox">Inbox will appear here...</div>
+
+  <script src="script.js"></script>
+</body>
+  </html>
+                                             
