@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MyMail - Temporary Email Generator</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 0 15px; background: #f5f5f5; color: #333; }
+    h1 { text-align: center; }
+    button { padding: 10px 20px; margin: 10px 5px; cursor: pointer; border: none; background: #007bff; color: white; border-radius: 5px; font-size: 1em; }
+    button:hover { background: #0056b3; }
+    #email-address { font-weight: bold; font-size: 1.2em; margin-top: 10px; }
+    #timer { font-size: 1.1em; margin-top: 10px; color: #d9534f; }
+    #inbox { margin-top: 20px; background: white; border-radius: 5px; padding: 15px; min-height: 150px; overflow-y: auto; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+    .mail-item { padding: 10px; border-bottom: 1px solid #ddd; }
+    .mail-subject { font-weight: bold; }
+    .mail-from { font-style: italic; font-size: 0.9em; color: #666; }
+    #footer { text-align: center; margin-top: 30px; font-size: 0.9em; color: #999; }
+  </style>
+</head>
+<body>
+
+  <h1>MyMail - Temporary Email Generator</h1>
+
+  <div>
+    <button id="generate-btn">Generate</button>
+    <button id="refresh-btn">Refresh</button>
+  </div>
+
+  <div id="email-address">Your email will appear here</div>
+  <div id="timer">Timer: 10:00</div>
+
+  <div id="inbox">
+    <p>No emails yet</p>
+  </div>
+
+  <div id="footer">
+    &copy; 2025 MyMail - Temporary Email Service
+  </div>
+
+  <script>
+    let countdownSeconds = 600;
+    let timerInterval;
+    let currentEmail = '';
+
+    function formatTime(seconds) {
+      const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+      const s = (seconds % 60).toString().padStart(2, '0');
+      return `${m}:${s}`;
+    }
+
+    function startTimer() {
+      clearInterval(timerInterval);
+      countdownSeconds = 600;
+      document.getElementById('timer').textContent = 'Timer: ' + formatTime(countdownSeconds);
+
+      timerInterval = setInterval(() => {
+        countdownSeconds--;
+        document.getElementById('timer').textContent = 'Timer: ' + formatTime(countdownSeconds);
+
+        if (countdownSeconds <= 0) {
+          clearInterval(timerInterval);
+          generateEmail();
+        }
+      }, 1000);
+    }
+
+    function generateRandomString(length) {
+      const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+      let result = '';
+      for (let i = 0; i < length; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return result;
+    }
+
+    function generateEmail() {
+      currentEmail = generateRandomString(10) + '@1secmail.com';
+      document.getElementById('email-address').textContent = currentEmail;
+      document.getElementById('inbox').innerHTML = '<p>No emails yet</p>';
+      startTimer();
+    }
+
+    document.getElementById('generate-btn').addEventListener('click', generateEmail);
+    document.getElementById('refresh-btn').addEventListener('click', () => {
+      alert('Refresh button clicked - next step is to fetch emails from API!');
+    });
+
+    // Auto-generate email on page load
+    generateEmail();
+  </script>
+</body>
+</html>
